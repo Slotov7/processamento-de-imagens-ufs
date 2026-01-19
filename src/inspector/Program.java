@@ -7,7 +7,6 @@ public class Program {
     public static void main(String[] args) {
         String filePath = "samples/teste.pbm";
 
-        System.out.println("=== SISTEMA DE INSPEÇÃO GENERICSTUFF ===");
         System.out.println("Arquivo alvo: " + filePath);
 
         PbmImageLoader loader = new PbmImageLoader();
