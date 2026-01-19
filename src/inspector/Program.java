@@ -5,12 +5,6 @@ import java.io.IOException;
 public class Program {
 
     public static void main(String[] args) {
-//        if (args.length < 1) {
-////            System.err.println("Erro: Nenhum arquivo fornecido.");
-////            System.err.println("Uso correto: java -cp bin inspector.Main");
-////            System.exit(1);
-////        }
-
         String filePath = "samples/teste.pbm";
 
         System.out.println("=== SISTEMA DE INSPEÇÃO GENERICSTUFF ===");

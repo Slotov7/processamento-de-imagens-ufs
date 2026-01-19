@@ -16,7 +16,7 @@ public class ObjectInspector {
 
         for (int row = 0; row < image.getTotalHeight(); row++) {
             for (int col = 0; col < image.getTotalWidth(); col++) {
-                if (image.getRawPixel(col, row) == BinaryImage.OBJECT) {
+                if (image.getRawPixel(row, col) == BinaryImage.OBJECT) {
                     total++;
 
                     boolean hasHole = processObjectCheckingHoles(image, row, col);
@@ -73,7 +73,7 @@ public class ObjectInspector {
             if (!image.isInside(p.row, p.col)){
                 continue;
             }
-            if (image.getRawPixel(p.row, p.col) == BinaryImage.OBJECT){
+            if (image.getRawPixel(p.row, p.col) != BinaryImage.OBJECT){
                 continue;
             }
             image.setRawPixel(p.row, p.col, 3);
@@ -87,6 +87,9 @@ public class ObjectInspector {
                         foundhole = true;
                     }
                 }
+            }
+            for (int i = 0; i < 8; i++) {
+                stack.push(new Point(p.row + drow[i], p.col + dcol[i]));
             }
         }
         return foundhole;
