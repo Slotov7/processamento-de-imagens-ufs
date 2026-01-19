@@ -24,12 +24,12 @@ public class BinaryImage {
         pixels[row + 1][col + 1] = value;
     }
 
-    public int getRawPixel(int r, int c) {
-        return pixels[r][c];
+    public int getRawPixel(int row, int col) {
+        return pixels[row][col];
     }
 
-    public void setRawPixel(int r, int c, int value) {
-        pixels[r][c] = value;
+    public void setRawPixel(int row, int col, int value) {
+        pixels[row][col] = value;
     }
 
     public int getTotalHeight() { 
@@ -40,7 +40,7 @@ public class BinaryImage {
         return pixels[0].length; 
     } 
 
-    public boolean isInside(int r, int c) {
-        return r >= 0 && r < pixels.length && c >= 0 && c < pixels[0].length;
+    public boolean isInside(int row, int col) {
+        return row >= 0 && row < pixels.length && col >= 0 && col < pixels[0].length;
     }
 }
