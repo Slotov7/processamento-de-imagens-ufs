@@ -6,12 +6,10 @@ import java.util.Scanner;
 
 public class PbmImageLoader {
 
-    public BinaryImage load(String filePath) throws Exception {
+    public BinaryImage load(String filePath) throws IOException {
+        try (FileInputStream fileStream = new FileInputStream(filePath);
+                Scanner scanner = new Scanner(fileStream)) {
 
-        FileInputStream fileInputStream = new FileInputStream(filePath);
-        Scanner scanner = new Scanner(fileInputStream);
-
-        try {
             String header = nextToken(scanner);
 
             if (!header.equalsIgnoreCase("P1")) {
@@ -34,12 +32,8 @@ public class PbmImageLoader {
             }
 
             return image;
-
-        } finally {
-            scanner.close();
         }
     }
-
 
     private String nextToken(Scanner sc) throws IOException {
         while (sc.hasNext()) {

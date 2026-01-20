@@ -2,7 +2,6 @@
 ![Algorithm](https://img.shields.io/badge/Algorithm-Flood%20Fill-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-
 ## Sobre o Projeto
 
 O Projeto é uma ferramenta de linha de comando (CLI) capaz de processar imagens binárias (formato PBM ASCII) para identificar, contar e classificar objetos.
@@ -11,11 +10,11 @@ O sistema simula um cenário de controle de qualidade industrial (ex: fábrica d
 
 ### Funcionalidades
 
-*  **Leitura de PBM:** Suporte nativo ao formato PBM P1 (ASCII).
-*  **Padding Automático:** Adição de bordas de segurança para evitar erros de índice (*ArrayIndexOutOfBounds*).
-*  **Algoritmo Flood Fill:** Implementação robusta baseada em **Pilha (Stack)** para evitar estouro de memória (StackOverflow) em imagens grandes.
-*  **Detecção de Topologia:** Distingue furos reais (fechados) de concavidades (aberturas externas).
-*  **Relatório de Performance:** Exibe o tempo de carregamento e processamento em milissegundos.
+* **Leitura de PBM:** Suporte nativo ao formato PBM P1 (ASCII).
+* **Padding Automático:** Adição de bordas de segurança para evitar erros de índice (*ArrayIndexOutOfBounds*).
+* **Algoritmo Flood Fill:** Implementação robusta baseada em **Pilha (Stack)** para evitar estouro de memória (StackOverflow) em imagens grandes.
+* **Detecção de Topologia:** Distingue furos reais (fechados) de concavidades (aberturas externas).
+* **Relatório de Performance:** Exibe o tempo de carregamento e processamento em milissegundos.
 
 ---
 
@@ -53,18 +52,48 @@ processamento-de-imagens-ufs/
 Abra o terminal na raiz do projeto e execute:
 
 ```bash
+# Linux/Mac
 mkdir -p bin
 javac -d bin src/inspector/*.java
 
+# Windows
+mkdir bin
+javac -d bin src\inspector\*.java
 ```
 
 ### 2. Rodar a Inspeção
 
-Execute o programa passando o caminho da imagem PBM como argumento:
+**Opção 1: Usando os Scripts (Recomendado)**
 
 ```bash
+# Linux/Mac
+./run.sh samples/teste.pbm
+
+# Windows
+run.bat samples\teste.pbm
+```
+
+**Opção 2: Comando Java Direto**
+
+```bash
+# Linux/Mac
 java -cp bin inspector.Program samples/teste.pbm
 
+# Windows
+java -cp bin inspector.Program samples\teste.pbm
+```
+
+**Exemplos com diferentes arquivos:**
+
+```bash
+# Teste simples (1 objeto sem furos)
+run.bat samples\simples.pbm
+
+# Teste complexo (letras A, B, C)
+run.bat samples\teste.pbm
+
+# Múltiplos objetos
+run.bat samples\varios.pbm
 ```
 
 ---
@@ -95,16 +124,16 @@ Tempo de processamento: 1 ms
 1. **Padding:** A matriz é criada com dimensões `(H+2, W+2)`. Isso permite que o algoritmo visite as bordas da imagem original sem precisar de `if` complexos para checar limites.
 2. **Flood Fill Iterativo:** Em vez de recursão (que falha em imagens grandes), utilizamos uma `Deque<Point>` para controlar a visitação dos pixels.
 3. **Lógica de 3 Passos:**
+
 * **Passo 1:** Inundar o fundo externo (partindo de `0,0`) com valor `2`.
 * **Passo 2:** Encontrar objetos (valor `1`).
 * **Passo 3:** Percorrer o objeto. Se ele tocar em algum vizinho `0` (fundo intocado), significa que existe um buraco interno protegido do fundo externo.
 
-
-
 ---
 
-## Grupo:
-* **Allex Lemos** 
-* **Débora Diana** 
-* **Guilherme Araujo** 
-* **Miguel Lucas** 
+## Grupo
+
+* **Allex Lemos**
+* **Débora Diana**
+* **Guilherme Araujo**
+* **Miguel Lucas**

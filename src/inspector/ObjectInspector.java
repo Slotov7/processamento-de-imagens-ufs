@@ -44,8 +44,8 @@ public class ObjectInspector {
             if (!image.isInside(p.row, p.col)){
                 continue;
             }
-            if (image.getRawPixel(p.row, p.col) == BinaryImage.BACKGROUND){
-                image.setRawPixel(p.row, p.col, 2);
+            if (image.getRawPixel(p.row, p.col) == BinaryImage.BACKGROUND) {
+                image.setRawPixel(p.row, p.col, BinaryImage.EXT_BACKGROUND);
 
                 for (int i = 0; i < 4; i++) {
                     stack.push(new Point(p.row + drow[i], p.col + dcol[i]));
@@ -76,7 +76,7 @@ public class ObjectInspector {
             if (image.getRawPixel(p.row, p.col) != BinaryImage.OBJECT){
                 continue;
             }
-            image.setRawPixel(p.row, p.col, 3);
+            image.setRawPixel(p.row, p.col, BinaryImage.VISITED);
 
             if (!foundhole){
                 for (int i = 0; i < 4; i++) {
@@ -95,5 +95,3 @@ public class ObjectInspector {
         return foundhole;
     }
 }
-
-

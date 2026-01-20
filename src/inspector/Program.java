@@ -5,7 +5,13 @@ import java.io.IOException;
 public class Program {
 
     public static void main(String[] args) {
-        String filePath = "samples/teste.pbm";
+        if (args.length < 1) {
+            System.err.println("Erro: Nenhum arquivo fornecido.");
+            System.err.println("Uso: java -cp bin inspector.Program <caminho_do_arquivo.pbm>");
+            System.exit(1);
+        }
+
+        String filePath = args[0];
 
         System.out.println("Arquivo alvo: " + filePath);
 
